@@ -8,6 +8,7 @@ $().ready(() => {
   player.render(stars[0]);
 
   updateInfoPanel();
+  updateActionPanel();
 
   function createStars(numOfStars) {
     let randomizedStarNames = _.shuffle(starnames);
@@ -46,5 +47,9 @@ $().ready(() => {
 
     $('#currentHull').text(player.currentHull);
     $('#maxHull').text(player.maxHull);
+  }
+
+  function updateActionPanel() {
+    $('#action').text(player.star.name);
   }
 });

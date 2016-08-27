@@ -20,12 +20,13 @@ class Player {
     this.$ship.addClass('player');
   }
 
-  render($star) {
+  render(star) {
+    this.star = star;
     let starMap = $('.star-map');
 
     this.$ship.css({
-      left: $star.position.left - 7,
-      top: $star.position.top - 10
+      left: star.position.left - 7,
+      top: star.position.top - 10
     });
 
     starMap.append(this.$ship);

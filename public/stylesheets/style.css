@@ -30,6 +30,11 @@ main {
 .game-area {
   height: 66.66667%;
   background-color: gray; }
+  .game-area h2 {
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin-left: 50px;
+    margin-right: 50px; }
   .game-area .commands {
     height: 100%;
     width: 30%;
@@ -39,19 +44,17 @@ main {
     height: 100%;
     width: 40%;
     background-color: green;
-    display: inline-block; }
+    display: inline-block;
+    position: absolute;
+    height: 66.66667%; }
   .game-area .info {
     height: 100%;
     width: 30%;
     background-color: yellow;
     display: inline-block;
     position: absolute;
-    height: 66.66667%; }
-    .game-area .info h2 {
-      text-align: center;
-      border-bottom: 1px solid black;
-      margin-left: 50px;
-      margin-right: 50px; }
+    height: 66.66667%;
+    left: 70%; }
     .game-area .info table {
       margin: auto;
       font-size: 1.3em; }
