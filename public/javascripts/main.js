@@ -4,8 +4,7 @@ $().ready(() => {
 
   createStars(10);
   addUniqueItemsToStars();
-
-  console.log(stars);
+  addEnemiesToStars();
 
   let player = new Player();
   player.create();
@@ -96,6 +95,12 @@ $().ready(() => {
 
     uniqueIndexes.forEach((starIndex, treasureIndex) => {
       stars[starIndex].uniqueItem = uniqueItems[treasureIndex];
+    });
+  }
+
+  function addEnemiesToStars() {
+    stars.forEach((star) => {
+      star.normalEnemy = new Enemy('normal');
     });
   }
 });
