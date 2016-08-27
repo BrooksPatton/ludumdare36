@@ -6,6 +6,10 @@ class Star {
     this.fuelCost = baseFuelCost;
     this.repairCost = baseRepairCost;
     this.missilesCost = baseMissilesCost;
+
+    let treasureIndex = randomInt(0, normalItems.length - 1);
+    this.treasure = normalItems[treasureIndex].item;
+    this.treasureAmount = randomInt(normalItems[treasureIndex].minAmount, normalItems[treasureIndex].maxAmount);
   }
 
   create() {

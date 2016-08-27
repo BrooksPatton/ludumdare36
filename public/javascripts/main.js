@@ -2,7 +2,7 @@ $().ready(() => {
   let stars = [];
   let playerAtStar = true;
 
-  createStars(100);
+  createStars(50);
 
   let player = new Player();
   player.create();
@@ -52,12 +52,6 @@ $().ready(() => {
       left: randomInt(30, $('.star-map').width() - 30),
       top: randomInt(10, $('.star-map').height() - 25)
     };
-  }
-
-  function randomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   function updateInfoPanel() {
