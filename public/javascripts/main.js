@@ -2,7 +2,10 @@ $().ready(() => {
   let stars = [];
   let playerAtStar = true;
 
-  createStars(50);
+  createStars(10);
+  addUniqueItemsToStars();
+
+  console.log(stars);
 
   let player = new Player();
   player.create();
@@ -80,5 +83,19 @@ $().ready(() => {
       $('#repairCost').text(player.star.repairCost);
       $('#missilesCost').text(player.star.missilesCost);
     }
+  }
+
+  function addUniqueItemsToStars() {
+    let uniqueIndexes = [];
+
+    while(uniqueIndexes.length < 4) {
+      let potentialIndex = randomInt(0, stars.length - 1);
+
+      if(uniqueIndexes.indexOf(potentialIndex) === -1) uniqueIndexes.push(potentialIndex);
+    }
+
+    uniqueIndexes.forEach((starIndex, treasureIndex) => {
+      stars[starIndex].uniqueItem = uniqueItems[treasureIndex];
+    });
   }
 });
