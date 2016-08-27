@@ -15,7 +15,7 @@ main {
     background-color: white;
     width: 10px;
     height: 10px;
-    position: relative;
+    position: absolute;
     border-radius: 50%; }
 
 .game-area {
