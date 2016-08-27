@@ -1,12 +1,13 @@
 $().ready(() => {
   let stars = [];
 
-
   createStars(100);
 
   let player = new Player();
   player.create();
   player.render(stars[0]);
+
+  updateInfoPanel();
 
   function createStars(numOfStars) {
     let randomizedStarNames = _.shuffle(starnames);
@@ -31,5 +32,19 @@ $().ready(() => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function updateInfoPanel() {
+    $('#currentFuel').text(player.currentFuel);
+    $('#maxFuel').text(player.maxFuel);
+
+    $('#currentShields').text(player.currentShields);
+    $('#maxShields').text(player.maxShields);
+
+    $('#currentMissiles').text(player.currentMissiles);
+    $('#maxMissiles').text(player.maxMissiles);
+
+    $('#currentHull').text(player.currentHull);
+    $('#maxHull').text(player.maxHull);
   }
 });

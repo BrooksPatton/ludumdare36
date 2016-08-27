@@ -44,6 +44,18 @@ main {
     height: 100%;
     width: 30%;
     background-color: yellow;
-    display: inline-block; }
+    display: inline-block;
+    position: absolute;
+    height: 66.66667%; }
+    .game-area .info h2 {
+      text-align: center;
+      border-bottom: 1px solid black;
+      margin-left: 50px;
+      margin-right: 50px; }
+    .game-area .info table {
+      margin: auto;
+      font-size: 1.3em; }
+      .game-area .info table .label {
+        width: 150px; }
 
 /*# sourceMappingURL=style.css.map */

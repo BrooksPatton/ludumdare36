@@ -1,10 +1,18 @@
 class Player {
   constructor() {
     this.imageUrl = '/images/player.png';
-    this.fuel = 10;
-    this.shields = 10;
-    this.missiles = 1;
-    this.hull = 1;
+
+    this.currentFuel = 10;
+    this.maxFuel = 10;
+
+    this.currentShields = 10;
+    this.maxShields = 10;
+
+    this.currentMissiles = 1;
+    this.maxMissiles = 1;
+
+    this.currentHull = 1;
+    this.maxHull = 1;
   }
 
   create() {
