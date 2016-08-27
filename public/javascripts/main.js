@@ -154,8 +154,34 @@ $().ready(() => {
       else {
         enemyTurn();
       }
-    });
+
       updateActionPanel();
+    });
+
+    if(player.currentMissiles > 0){
+      $('#fire-missile').on('click', function() {
+        disableAttackButtons();
+
+        player.currentMissiles--;
+
+        if(currentEnemy.shields > 0) {
+          currentEnemy.shields -= player.missileDamage;
+        }
+        else {
+          currentEnemy.hull -= player.missileDamage;
+        }
+
+        if(currentEnemy.hull <= 0) {
+          player.star.normalEnemy = null;
+          travelTo(currentDestination);
+        }
+        else {
+          enemyTurn();
+        }
+
+        updateActionPanel();
+      });
+    }
   }
 
   function enemyTurn() {
