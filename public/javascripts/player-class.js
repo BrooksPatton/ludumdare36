@@ -18,6 +18,8 @@ class Player {
 
     this.laserDamage = 1;
     this.missileDamage = 5;
+
+    this.treasures = [];
   }
 
   create() {

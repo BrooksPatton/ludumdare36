@@ -38,6 +38,24 @@ $().ready(() => {
     }
   });
 
+  $('#searchPlanet').on('click', function() {
+    rechargePlayerShields(1);
+
+    if(player.star.treasure) {
+      player.treasures.push(player.star.treasure);
+
+      if(player.star.treasure === 'fuel tank') player.maxFuel += player.star.treasureAmount;
+      if(player.star.treasure === 'shield booster') player.maxShields += player.star.treasureAmount;
+      if(player.star.treasure === 'missile rack') player.maxMissiles += player.star.treasureAmount;
+      if(player.star.treasure === 'hull reinforcer') player.maxHull += player.star.treasureAmount;
+      if(player.star.treasure === 'money') player.money += player.star.treasureAmount;
+
+      player.star.treasure = null;
+
+      updateInfoPanel();
+    }
+  })
+
   function createStars(numOfStars) {
     let randomizedStarNames = _.shuffle(starnames);
 
