@@ -1,16 +1,18 @@
 $().ready(() => {
   let stars = [];
 
+
   createStars(100);
 
   let player = new Player();
   player.create();
   player.render(stars[0]);
-  console.log('player rendered on', stars[0]);
 
   function createStars(numOfStars) {
+    let randomizedStarNames = _.shuffle(starnames);
+
     for (var i = 0; i < numOfStars; i++) {
-      let star = new Star();
+      let star = new Star(randomizedStarNames.pop(), i);
       star.create();
       star.render(randomStarPosition());
 

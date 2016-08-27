@@ -1,6 +1,10 @@
 class Player {
   constructor() {
     this.imageUrl = '/images/player.png';
+    this.fuel = 10;
+    this.shields = 10;
+    this.missiles = 1;
+    this.hull = 1;
   }
 
   create() {
@@ -10,7 +14,6 @@ class Player {
 
   render($star) {
     let starMap = $('.star-map');
-    console.log($star.position);
 
     this.$ship.css({
       left: $star.position.left - 7,

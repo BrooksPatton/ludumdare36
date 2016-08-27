@@ -1,6 +1,7 @@
 class Star {
-  constructor() {
-    this.name = 'Star_Name';
+  constructor(name, id) {
+    this.name = name;
+    this.id = id;
   }
 
   create() {
@@ -11,6 +12,7 @@ class Star {
     this.$system.addClass('star-system');
     this.$name.addClass('star-name');
     this.$name.css('marginLeft', -(this.name.length * 4));
+    this.$system.attr('data-id', this.id);
 
     this.$name.text(this.name);
 
