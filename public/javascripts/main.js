@@ -1,5 +1,6 @@
 $().ready(() => {
   let stars = [];
+  let playerAtStar = true;
 
   createStars(100);
 
@@ -51,5 +52,13 @@ $().ready(() => {
 
   function updateActionPanel() {
     $('#action').text(player.star.name);
+
+    if(playerAtStar) {
+      $('.action .atStar').show();
+
+      $('#fuelCost').text(player.star.fuelCost);
+      $('#repairCost').text(player.star.repairCost);
+      $('#missilesCost').text(player.star.missilesCost);
+    }
   }
 });

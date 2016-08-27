@@ -53,6 +53,11 @@ main {
     display: inline-block;
     position: absolute;
     height: 66.66667%; }
+    .game-area .action table {
+      margin: auto;
+      font-size: 1.3em; }
+      .game-area .action table .label {
+        width: 200px; }
   .game-area .info {
     height: 100%;
     width: 30%;
