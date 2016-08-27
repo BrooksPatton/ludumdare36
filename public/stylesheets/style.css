@@ -58,6 +58,13 @@ main {
       font-size: 1.3em; }
       .game-area .action table .label {
         width: 200px; }
+    .game-area .action .normalEnemy {
+      background-image: url("/images/normal-pirate.png");
+      width: 40%;
+      height: 40%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin: auto; }
   .game-area .info {
     height: 100%;
     width: 30%;

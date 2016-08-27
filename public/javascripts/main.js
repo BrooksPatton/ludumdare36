@@ -1,6 +1,7 @@
 $().ready(() => {
   let stars = [];
-  let playerAtStar = true;
+  let currentEnemy;
+  let currentDestination;
 
   createStars(10);
   addUniqueItemsToStars();
@@ -8,10 +9,10 @@ $().ready(() => {
 
   let player = new Player();
   player.create();
-  player.render(stars[0]);
 
   updateInfoPanel();
-  updateActionPanel();
+
+  travelTo(stars[0]);
 
   $('#purchaseFuel').on('click', function() {
     if(player.money >= player.star.fuelCost && player.currentFuel < player.maxFuel) {
@@ -75,12 +76,24 @@ $().ready(() => {
   function updateActionPanel() {
     $('#action').text(player.star.name);
 
-    if(playerAtStar) {
-      $('.action .atStar').show();
+    if(!currentEnemy) {
+      $('.fight').hide();
+      $('.at-star').show();
 
       $('#fuelCost').text(player.star.fuelCost);
       $('#repairCost').text(player.star.repairCost);
       $('#missilesCost').text(player.star.missilesCost);
+    }
+    else {
+      $('.at-star').hide();
+      $('.fight').show();
+
+      $('#action').text(currentEnemy.name);
+
+      $('#enemy-ship').addClass('normalEnemy');
+
+      $('#enemy-shields').text(currentEnemy.shields);
+      $('#enemy-hull').text(currentEnemy.hull);
     }
   }
 
@@ -102,5 +115,74 @@ $().ready(() => {
     stars.forEach((star) => {
       star.normalEnemy = new Enemy('normal');
     });
+  }
+
+  function travelTo(star) {
+    currentDestination = star;
+
+    player.render(star);
+    if(player.star.normalEnemy) {
+      currentEnemy = player.star.normalEnemy;
+      updateActionPanel();
+      enableAttackButtons();
+    }
+    else {
+      currentEnemy = null;
+      updateActionPanel();
+    }
+  }
+
+  function disableAttackButtons() {
+    $('.attack-btn').off();
+  }
+
+  function enableAttackButtons() {
+    $('#fire-lasers').on('click', function() {
+      disableAttackButtons();
+
+      if(currentEnemy.shields > 0) {
+        currentEnemy.shields -= player.laserDamage;
+      }
+      else {
+        currentEnemy.hull -= player.laserDamage;
+      }
+
+      if(currentEnemy.hull <= 0) {
+        player.star.normalEnemy = null;
+        travelTo(currentDestination);
+      }
+      else {
+        enemyTurn();
+      }
+    });
+      updateActionPanel();
+  }
+
+  function enemyTurn() {
+    if(currentEnemy.missiles > 0 && randomInt(0, 100) > 20) {
+      if(player.currentShields > 0) {
+        player.currentShields -= currentEnemy.missileDamage;
+        if(player.currentShields < 0) player.currentShields = 0;
+      }
+      else {
+        player.currentHull -= currentEnemy.missileDamage;
+      }
+    }
+    else {
+      if(player.currentShields > 0) {
+        player.currentShields -= currentEnemy.laserDamage;
+        if(player.currentShields < 0) player.currentShields = 0;
+      }
+      else {
+        player.currentHull -= currentEnemy.laserDamage;
+      }
+    }
+
+    if(player.currentHull <= 0) {
+      window.location.href = '/gameover';
+    }
+
+    updateInfoPanel();
+    enableAttackButtons();
   }
 });

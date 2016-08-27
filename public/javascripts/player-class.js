@@ -15,6 +15,9 @@ class Player {
     this.currentHull = this.maxHull;
 
     this.money = startingMoney;
+
+    this.laserDamage = 1;
+    this.missileDamage = 5;
   }
 
   create() {

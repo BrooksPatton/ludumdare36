@@ -10,7 +10,7 @@ router.get('/game', function(req, res, next) {
   res.render('game');
 });
 
-router.get('/endgame', function(req, res, next) {
+router.get('/gameover', function(req, res, next) {
   res.render('endgame');
 });
 
