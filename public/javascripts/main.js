@@ -11,6 +11,22 @@ $().ready(() => {
   updateInfoPanel();
   updateActionPanel();
 
+  $('#purchaseFuel').on('click', function() {
+    if(player.money >= player.star.fuelCost && player.currentFuel < player.maxFuel) {
+      player.money -= player.star.fuelCost;
+      player.currentFuel++;
+      updateInfoPanel();
+    }
+  });
+
+  $('#purchaseMissiles').on('click', function() {
+    if(player.money >= player.star.missilesCost && player.currentMissiles < player.maxMissiles) {
+      player.money -= player.star.missilesCost;
+      player.currentMissiles++;
+      updateInfoPanel();
+    }
+  });
+
   function createStars(numOfStars) {
     let randomizedStarNames = _.shuffle(starnames);
 
@@ -48,6 +64,8 @@ $().ready(() => {
 
     $('#currentHull').text(player.currentHull);
     $('#maxHull').text(player.maxHull);
+
+    $('#money').text(player.money)
   }
 
   function updateActionPanel() {
