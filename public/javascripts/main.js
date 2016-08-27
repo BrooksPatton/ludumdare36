@@ -1,5 +1,5 @@
 $().ready(() => {
-  createStars(300);
+  createStars(100);
 
   function createStars(numOfStars) {
     for (var i = 0; i < numOfStars; i++) {
@@ -11,8 +11,8 @@ $().ready(() => {
 
   function randomStarPosition() {
     return {
-      left: randomInt(10, $('.star-map').width() - 10),
-      top: randomInt(10, $('.star-map').height() - 10)
+      left: randomInt(30, $('.star-map').width() - 30),
+      top: randomInt(10, $('.star-map').height() - 25)
     };
   }
 

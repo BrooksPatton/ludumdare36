@@ -11,12 +11,15 @@ main {
 .star-map {
   height: 33.33333%;
   background-color: black; }
-  .star-map .star {
+  .star-map .star-system {
     background-color: white;
     width: 10px;
     height: 10px;
     position: absolute;
-    border-radius: 50%; }
+    border-radius: 50%;
+    color: white; }
+    .star-map .star-system .star-name {
+      margin-top: 10px; }
 
 .game-area {
   height: 66.66667%;
