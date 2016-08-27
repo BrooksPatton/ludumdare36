@@ -27,6 +27,14 @@ $().ready(() => {
     }
   });
 
+  $('#repairShip').on('click', function() {
+    if(player.money >= player.star.repairCost && player.currentHull < player.maxHull) {
+      player.money -= player.star.repairCost;
+      player.currentHull++;
+      updateInfoPanel();
+    }
+  });
+
   function createStars(numOfStars) {
     let randomizedStarNames = _.shuffle(starnames);
 

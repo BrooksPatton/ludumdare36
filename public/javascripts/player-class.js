@@ -2,17 +2,17 @@ class Player {
   constructor() {
     this.imageUrl = '/images/player.png';
 
-    this.currentFuel = 7;
-    this.maxFuel = 10;
+    this.maxFuel = baseMaxFuel;
+    this.currentFuel = this.maxFuel;
 
     this.currentShields = 10;
     this.maxShields = 10;
 
-    this.currentMissiles = 0;
-    this.maxMissiles = 1;
+    this.maxMissiles = baseMaxMissiles;
+    this.currentMissiles = this.maxMissiles;
 
-    this.currentHull = 1;
-    this.maxHull = 1;
+    this.maxHull = baseMaxHull;
+    this.currentHull = this.maxHull;
 
     this.money = startingMoney;
   }
