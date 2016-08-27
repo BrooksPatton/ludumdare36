@@ -26,6 +26,8 @@ main {
     height: 32px;
     width: 32px;
     position: relative; }
+  .star-map .explored {
+    color: yellow; }
 
 .game-area {
   height: 66.66667%;

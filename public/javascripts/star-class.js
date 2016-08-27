@@ -58,4 +58,10 @@ class Star {
 
     return collision;
   }
+
+  markExplored(treasureType) {
+    this[treasureType] = null;
+
+    this.$name.addClass('explored');
+  }
 }

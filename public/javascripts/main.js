@@ -50,7 +50,7 @@ $().ready(() => {
       if(player.star.treasure === 'hull reinforcer') player.maxHull += player.star.treasureAmount;
       if(player.star.treasure === 'money') player.money += player.star.treasureAmount;
 
-      player.star.treasure = null;
+      player.star.markExplored('treasure');
 
       updateInfoPanel();
     }
