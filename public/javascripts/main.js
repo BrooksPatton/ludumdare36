@@ -121,6 +121,9 @@ $().ready(() => {
     currentDestination = star;
 
     player.render(star);
+
+    rechargePlayerShields(1);
+
     if(player.star.normalEnemy) {
       currentEnemy = player.star.normalEnemy;
       updateActionPanel();
@@ -210,5 +213,13 @@ $().ready(() => {
 
     updateInfoPanel();
     enableAttackButtons();
+  }
+
+  function rechargePlayerShields(amount) {
+    player.currentShields += amount;
+
+    if(player.currentShields > player.maxShields) player.currentShields = player.maxShields;
+
+    updateInfoPanel();
   }
 });
