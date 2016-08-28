@@ -14,6 +14,8 @@ $().ready(() => {
 
   travelTo(stars[0]);
 
+  enableTravelToStars();
+
   $('#purchaseFuel').on('click', function() {
     if(player.money >= player.star.fuelCost && player.currentFuel < player.maxFuel) {
       player.money -= player.star.fuelCost;
@@ -185,6 +187,8 @@ $().ready(() => {
   }
 
   function enableAttackButtons() {
+    disableAttackButtons();
+    
     $('#fire-lasers').on('click', function() {
       disableAttackButtons();
 
@@ -309,5 +313,13 @@ $().ready(() => {
 
     $('.action-messages').append($el);
     $el.fadeIn(50, () => $el.fadeOut(5000, () => $el.remove()));
+  }
+
+  function enableTravelToStars() {
+    stars.forEach((star) => {
+      star.$system.on('click', function() {
+        travelTo(stars[$(this).data('id')]);
+      });
+    });
   }
 });
