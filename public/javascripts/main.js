@@ -125,15 +125,51 @@ $().ready(() => {
   function updateInfoPanel() {
     $('#currentFuel').text(player.currentFuel);
     $('#maxFuel').text(player.maxFuel);
+    if(player.currentFuel / player.maxFuel > .5) {
+      setColorToGood('#currentFuel');
+    }
+    else if(player.currentFuel / player.maxFuel <= .5 && player.currentFuel / player.maxFuel > .2) {
+      setColorToOkay('#currentFuel');
+    }
+    else {
+      setColorToBad('#currentFuel');
+    }
 
     $('#currentShields').text(player.currentShields);
     $('#maxShields').text(player.maxShields);
+    if(player.currentShields / player.maxShields > .5) {
+      setColorToGood('#currentShields');
+    }
+    else if(player.currentShields / player.maxShields <= .5 && player.currentShields / player.maxShields > .2) {
+      setColorToOkay('#currentShields');
+    }
+    else {
+      setColorToBad('#currentShields');
+    }
 
     $('#currentMissiles').text(player.currentMissiles);
     $('#maxMissiles').text(player.maxMissiles);
+    if(player.currentMissiles / player.maxMissiles > .5) {
+      setColorToGood('#currentMissiles');
+    }
+    else if(player.currentMissiles / player.maxMissiles <= .5 && player.currentMissiles / player.maxMissiles > .2) {
+      setColorToOkay('#currentMissiles');
+    }
+    else {
+      setColorToBad('#currentMissiles');
+    }
 
     $('#currentHull').text(player.currentHull);
     $('#maxHull').text(player.maxHull);
+    if(player.currentHull / player.maxHull > .5) {
+      setColorToGood('#currentHull');
+    }
+    else if(player.currentHull / player.maxHull <= .5 && player.currentHull / player.maxHull >= .2) {
+      setColorToOkay('#currentHull');
+    }
+    else {
+      setColorToBad('#currentHull');
+    }
 
     $('#money').text(player.money)
 
@@ -481,5 +517,17 @@ $().ready(() => {
 
   function disableTravel() {
     $('.star-system').off();
+  }
+
+  function setColorToGood(id) {
+    $(id).removeClass('danger').removeClass('warning');
+  }
+
+  function setColorToOkay(id) {
+    $(id).removeClass('danger').addClass('warning');
+  }
+
+  function setColorToBad(id) {
+    $(id).addClass('danger').removeClass('warning');
   }
 });
