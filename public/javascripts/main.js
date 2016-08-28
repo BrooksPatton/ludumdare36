@@ -3,7 +3,7 @@ $().ready(() => {
   let currentEnemy;
   let currentDestination;
 
-  createStars(10);
+  createStars(5);
   addUniqueItemsToStars();
   addEnemiesToStars();
 
@@ -15,6 +15,8 @@ $().ready(() => {
   travelTo(stars[0]);
 
   enableTravelToStars();
+
+  console.log(stars);
 
   $('#purchaseFuel').on('click', function() {
     if(player.money >= player.star.fuelCost && player.currentFuel < player.maxFuel) {
@@ -86,11 +88,9 @@ $().ready(() => {
     let randomizedStarNames = _.shuffle(starnames);
 
     for (var i = 0; i < numOfStars; i++) {
-      let star = new Star(randomizedStarNames.pop(), i);
-      star.create();
-      star.render(randomStarPosition());
-
-      stars.push(star);
+      let star = new Star(randomizedStarNames.pop());
+      star.create(stars);
+      star.render(randomStarPosition(), stars);
     }
   }
 
@@ -134,7 +134,8 @@ $().ready(() => {
 
       $('#action').text(currentEnemy.name);
 
-      $('#enemy-ship').addClass('normalEnemy');
+      if(currentEnemy.type === 'normal') $('#enemy-ship').addClass('normalEnemy');
+      if(currentEnemy.type === 'boss') $('#enemy-ship').addClass('bossEnemy');
 
       $('#enemy-shields').text(currentEnemy.shields);
       $('#enemy-hull').text(currentEnemy.hull);
@@ -158,6 +159,8 @@ $().ready(() => {
   function addEnemiesToStars() {
     stars.forEach((star) => {
       star.normalEnemy = new Enemy('normal');
+
+      if(star.uniqueItem) star.bossEnemy = new Enemy('boss');
     });
   }
 
@@ -172,6 +175,11 @@ $().ready(() => {
 
     if(player.star.normalEnemy) {
       currentEnemy = player.star.normalEnemy;
+      updateActionPanel();
+      enableAttackButtons();
+    }
+    else if (player.star.bossEnemy) {
+      currentEnemy = player.star.bossEnemy;
       updateActionPanel();
       enableAttackButtons();
     }
@@ -326,6 +334,8 @@ $().ready(() => {
   }
 
   function getRewardforDestroying() {
+    player.currentShields = player.maxShields;
+
     let rewards = [
       'fuel',
       'missiles',

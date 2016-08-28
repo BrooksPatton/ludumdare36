@@ -1,7 +1,6 @@
 class Star {
-  constructor(name, id) {
+  constructor(name) {
     this.name = name;
-    this.id = id;
 
     this.fuelCost = baseFuelCost;
     this.repairCost = baseRepairCost;
@@ -20,15 +19,12 @@ class Star {
     this.$system.addClass('star-system');
     this.$name.addClass('star-name');
     this.$name.css('marginLeft', -(this.name.length * 4));
-    this.$system.attr('data-id', this.id);
-
     this.$name.text(this.name);
-
     this.$system.append(this.$star);
     this.$system.append(this.$name);
   }
 
-  render(position) {
+  render(position, allStars) {
     this.position = position;
 
     this.$system.css({
@@ -36,7 +32,13 @@ class Star {
       top: position.top
     });
 
-    if(!this._isColliding()) $('.star-map').append(this.$system);
+    this.isColliding = this._isColliding();
+    if(!this.isColliding) {
+      $('.star-map').append(this.$system);
+      allStars.push(this);
+      this.id = allStars.length - 1;
+      this.$system.attr('data-id', this.id);
+    }
   }
 
   _isColliding() {
