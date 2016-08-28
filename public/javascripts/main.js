@@ -374,8 +374,8 @@ $().ready(() => {
 
     $el.text(message);
 
-    $('.action-messages').append($el);
-    $el.fadeIn(50, () => $el.fadeOut(5000, () => $el.remove()));
+    $('.action-messages').prepend($el);
+    $el.fadeIn(500, () => $el.fadeOut(3000, () => $el.remove()));
   }
 
   function enableTravelToStars() {

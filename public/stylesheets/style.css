@@ -68,7 +68,8 @@ main {
     background-color: #47d4df;
     display: inline-block;
     position: absolute;
-    height: 66.66667%; }
+    height: 66.66667%;
+    overflow: hidden; }
     .game-area .action table {
       margin: auto;
       font-size: 1.3em; }
