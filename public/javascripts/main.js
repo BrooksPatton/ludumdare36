@@ -542,19 +542,19 @@ $().ready(() => {
 
   function animateShipUpgrade(upgrade) {
     if(upgrade === 'fuel') {
-      $('#maxFuel').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#maxFuel').removeClass('upgraded'));
+      $('#maxFuel').addClass('upgraded').animate({color: '#fff'}, 10000, () => $('#maxFuel').removeClass('upgraded'));
     }
     else if(upgrade === 'shields') {
-      $('#maxShields').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#maxShields').removeClass('upgraded'));
+      $('#maxShields').addClass('upgraded').animate({color: '#fff'}, 10000, () => $('#maxShields').removeClass('upgraded'));
     }
     else if(upgrade === 'missiles') {
-      $('#maxMissiles').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#maxMissiles').removeClass('upgraded'));
+      $('#maxMissiles').addClass('upgraded').animate({color: '#fff'}, 10000, () => $('#maxMissiles').removeClass('upgraded'));
     }
     else if(upgrade === 'hull') {
-      $('#maxHull').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#maxHull').removeClass('upgraded'));
+      $('#maxHull').addClass('upgraded').animate({color: '#fff'}, 10000, () => $('#maxHull').removeClass('upgraded'));
     }
     else if(upgrade === 'money') {
-      $('#money').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#money').removeClass('upgraded'));
+      $('#money').addClass('upgraded').animate({color: '#fff'}, 10000, () => $('#money').removeClass('upgraded'));
     }
   }
 });
