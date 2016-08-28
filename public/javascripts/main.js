@@ -271,7 +271,9 @@ $().ready(() => {
     $popup.avgrund({
       width: 200,
       height: 125,
-      template: $popup
+      template: $popup,
+      showClose: true,
+      showCloseText: 'close'
     });
 
     $popup.click();
