@@ -26,7 +26,8 @@ main {
     height: 10px;
     position: absolute;
     border-radius: 50%;
-    color: white; }
+    color: white;
+    cursor: pointer; }
     .star-map .star-system .has-artifact-color {
       color: red; }
     .star-map .star-system .star-name {
