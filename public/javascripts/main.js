@@ -320,25 +320,29 @@ $().ready(() => {
 
   function enemyTurn() {
     if(currentEnemy.missiles > 0 && randomInt(0, 100) > 20) {
+      let currentDamage = currentEnemy.missileDamage();
+
       if(player.currentShields > 0) {
-        player.currentShields -= currentEnemy.missileDamage;
-        actionMessage(`The ${currentEnemy.name} attacked you with their missile for ${currentEnemy.missileDamage} shield damage`, 'enemy-color');
+        player.currentShields -= currentDamage;
+        actionMessage(`The ${currentEnemy.name} attacked you with their missile for ${currentDamage} shield damage`, 'enemy-color');
         if(player.currentShields < 0) player.currentShields = 0;
       }
       else {
-        player.currentHull -= currentEnemy.missileDamage;
-        actionMessage(`The ${currentEnemy.name} attacked you with their missile for ${currentEnemy.missileDamage} hull damage`, 'enemy-color');
+        player.currentHull -= currentDamage;
+        actionMessage(`The ${currentEnemy.name} attacked you with their missile for ${currentDamage} hull damage`, 'enemy-color');
       }
     }
     else {
       if(player.currentShields > 0) {
-        player.currentShields -= currentEnemy.laserDamage;
-        actionMessage(`The ${currentEnemy.name} attacked you with their laser for ${currentEnemy.missileDamage} shield damage`, 'enemy-color');
+        let currentDamage = currentEnemy.laserDamage();
+
+        player.currentShields -= currentDamage;
+        actionMessage(`The ${currentEnemy.name} attacked you with their laser for ${currentDamage} shield damage`, 'enemy-color');
         if(player.currentShields < 0) player.currentShields = 0;
       }
       else {
-        player.currentHull -= currentEnemy.laserDamage;
-        actionMessage(`The ${currentEnemy.name} attacked you with their laser for ${currentEnemy.missileDamage} hull damage`, 'enemy-color');
+        player.currentHull -= currentDamage;
+        actionMessage(`The ${currentEnemy.name} attacked you with their laser for ${currentDamage} hull damage`, 'enemy-color');
       }
     }
 
