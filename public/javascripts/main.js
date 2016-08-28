@@ -141,6 +141,8 @@ $().ready(() => {
   function travelTo(star) {
     currentDestination = star;
 
+    player.currentFuel--;
+
     player.render(star);
 
     rechargePlayerShields(1);
@@ -154,6 +156,7 @@ $().ready(() => {
       currentEnemy = null;
       updateActionPanel();
     }
+    updateInfoPanel();
   }
 
   function disableAttackButtons() {
