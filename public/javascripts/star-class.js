@@ -64,6 +64,8 @@ class Star {
   markExplored(treasureType) {
     this[treasureType] = null;
 
-    this.$name.addClass('explored');
+    if(!this.treasure && !this.uniqueItem) {
+      this.$name.addClass('explored');
+    }
   }
 }

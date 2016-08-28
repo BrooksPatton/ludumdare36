@@ -20,6 +20,8 @@ class Player {
     this.missileDamage = 5;
 
     this.treasures = [];
+
+    this.treasureMaps = [];
   }
 
   create() {

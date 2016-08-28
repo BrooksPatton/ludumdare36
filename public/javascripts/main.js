@@ -3,7 +3,7 @@ $().ready(() => {
   let currentEnemy;
   let currentDestination;
 
-  createStars(5);
+  createStars(50);
   addUniqueItemsToStars();
   addEnemiesToStars();
 
@@ -77,6 +77,14 @@ $().ready(() => {
 
       updateInfoPanel();
     }
+    else if(player.star.uniqueItem) {
+      player.treasureMaps.push(player.star.uniqueItem)
+      popupMessage('Unique item found', 'You found a fragment of a treasure map! Gather them all to find the ancient artifact');
+
+      player.star.markExplored('uniqueItem');
+
+      updateInfoPanel();
+    }
     else {
       popupMessage('Searching planet', 'Nothing to find here');
     }
@@ -113,6 +121,17 @@ $().ready(() => {
     $('#maxHull').text(player.maxHull);
 
     $('#money').text(player.money)
+
+    let mapFragments = $('#map-fragments');
+
+    if(player.treasureMaps.length === 1 && mapFragments.length === 0) {
+      let $row = $('<tr><td class="label">Map fragments</td><td><span id="map-fragments">1</span>/??</td></tr>');
+
+      $('.info table').append($row);
+    }
+    else if(mapFragments.length < player.treasureMaps.length) {
+      $('#map-fragments').text(player.treasureMaps.length);
+    }
   }
 
   function updateActionPanel() {
@@ -212,7 +231,13 @@ $().ready(() => {
       }
 
       if(currentEnemy.hull <= 0) {
-        player.star.normalEnemy = null;
+        if(currentEnemy.type === 'normal') {
+          player.star.normalEnemy = null;
+        }
+        else if(currentEnemy.type === 'boss') {
+          player.star.bossEnemy = null;
+        }
+
         actionMessage(`You destroyed the ${currentEnemy.name} with your laser!`);
         getRewardforDestroying();
         travelTo(currentDestination);
@@ -240,7 +265,13 @@ $().ready(() => {
         }
 
         if(currentEnemy.hull <= 0) {
-          player.star.normalEnemy = null;
+          if(currentEnemy.type === 'normal') {
+            player.star.normalEnemy = null;
+          }
+          else if(currentEnemy.type === 'boss') {
+            player.star.bossEnemy = null;
+          }
+
           actionMessage(`You destroyed the ${currentEnemy.name} with your missile!`);
           getRewardforDestroying();
           travelTo(currentDestination);
