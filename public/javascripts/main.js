@@ -62,7 +62,8 @@ $().ready(() => {
       }
       if(player.star.treasure === 'missile rack') {
         player.maxMissiles += player.star.treasureAmount;
-        actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Maximum number of missiles increased by ${player.star.treasureAmount}`, 'player');
+        player.missileMaxDamage += player.star.treasureAmount;
+        actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Maximum number of missiles and damage increased by ${player.star.treasureAmount}`, 'player');
       }
       if(player.star.treasure === 'hull reinforcer') {
         player.maxHull += player.star.treasureAmount;
@@ -71,6 +72,10 @@ $().ready(() => {
       if(player.star.treasure === 'money') {
         player.money += player.star.treasureAmount;
         actionMessage(`You found some ${player.star.treasure} in the ruins of the planet! Bank account increased by ${player.star.treasureAmount}`, 'player');
+      }
+      if(player.star.treasure === 'laser battery pack') {
+        player.laserMaxDamage += player.star.treasureAmount;
+        actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Laser max damages increased by ${player.star.treasureAmount}`, 'player');
       }
 
       player.star.markExplored('treasure');
@@ -429,9 +434,14 @@ $().ready(() => {
       }
       if(currentEnemy.item === 'missile rack') {
         player.maxMissiles += currentEnemy.itemAmount;
+        player.missileMaxDamage += currentEnemy.itemAmount;
       }
       if(currentEnemy.item === 'hull reinforcer') {
         player.maxHull += currentEnemy.itemAmount;
+      }
+      if(currentEnemy.item === 'laser battery pack') {
+        player.maxHull += currentEnemy.itemAmount;
+        player.laserMaxDamage += currentEnemy.itemAmount;
       }
       if(currentEnemy.item === 'money') {
         player.money += currentEnemy.itemAmount;
