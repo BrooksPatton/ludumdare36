@@ -403,7 +403,7 @@ $().ready(() => {
     $el.text(message);
 
     $('.action-messages').prepend($el);
-    $el.fadeIn(1000, () => $el.fadeOut(5000, () => $el.remove()));
+    $el.fadeIn(1000, () => $el.fadeOut(20000, () => $el.remove()));
   }
 
   function enableTravelToStars() {

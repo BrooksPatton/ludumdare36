@@ -63,6 +63,8 @@ main {
     background-image: url(/images/metal-background.png);
     background-repeat: no-repeat;
     background-size: contain; }
+    .game-area .commands .btn {
+      color: #fff; }
   .game-area .action {
     height: 100%;
     width: 40%;
@@ -108,7 +110,7 @@ main {
     background-repeat: no-repeat;
     background-size: contain; }
     .game-area .info table {
-      color: #808080;
+      color: #fff;
       margin: auto;
       font-size: 1.3em; }
       .game-area .info table .label {
