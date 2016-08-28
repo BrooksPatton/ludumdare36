@@ -69,7 +69,8 @@ class Star {
     }
   }
 
-  markHasArtifact() {
+  markHasArtifact(superBoss) {
     this.$name.addClass('has-artifact-color');
+    this.superBoss = superBoss;
   }
 }

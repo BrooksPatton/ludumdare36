@@ -1,7 +1,7 @@
 class Enemy {
   constructor(type) {
     this.type = type;
-    
+
     if(type === 'normal') {
       this.fuel = randomInt(0, 3);
       this.shields = 10;
@@ -18,6 +18,21 @@ class Enemy {
       let itemIndex = randomInt(0, normalItems.length - 1);
       this.item = normalItems[itemIndex].item;
       this.itemAmount = randomInt(normalItems[itemIndex].minAmount, normalItems[itemIndex].maxAmount) + 5;
+    }
+    else if(this.type === 'super boss'){
+      this.fuel = randomInt(0, 20);
+      this.shields = 20;
+      this.missiles = 10;
+      this.hull = 10;
+      this.money = randomInt(0, 5000);
+      this.name = 'Pirate Admiral';
+
+      this.laserDamage = 7;
+      this.missileDamage = 15;
+
+      let itemIndex = randomInt(0, normalItems.length - 1);
+      this.item = normalItems[itemIndex].item;
+      this.itemAmount = randomInt(normalItems[itemIndex].minAmount, normalItems[itemIndex].maxAmount) + 10;
     }
     else {
       this.fuel = randomInt(0, 20);

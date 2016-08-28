@@ -89,7 +89,9 @@ $().ready(() => {
 
       player.star.markExplored('uniqueItem');
 
-      if(player.treasureMaps.length === 4) revealStarWithArtifact();
+      if(player.treasureMaps.length === 4) {
+        revealStarWithArtifact();
+      }
 
       updateInfoPanel();
     }
@@ -214,6 +216,13 @@ $().ready(() => {
       updateActionPanel();
       enableAttackButtons();
     }
+    else if (player.star.superBoss) {
+      currentEnemy = player.star.superBoss;
+      updateActionPanel();
+      enableAttackButtons();
+      popupMessage('Super boss battle', 'This is it, you have found the planet with the artifact but the pirate Admiral is already here! You don\'t have any time left, destroy him now!');
+      disableTravel();
+    }
     else {
       currentEnemy = null;
       updateActionPanel();
@@ -248,6 +257,9 @@ $().ready(() => {
         else if(currentEnemy.type === 'boss') {
           player.star.bossEnemy = null;
         }
+        else if(currentEnemy.type === 'super boss') {
+          player.star.superBoss = null;
+        }
 
         actionMessage(`You destroyed the ${currentEnemy.name} with your laser!`);
         getRewardforDestroying();
@@ -281,6 +293,9 @@ $().ready(() => {
           }
           else if(currentEnemy.type === 'boss') {
             player.star.bossEnemy = null;
+          }
+          else if(currentEnemy.type === 'super boss') {
+            player.star.superBoss = null;
           }
 
           actionMessage(`You destroyed the ${currentEnemy.name} with your missile!`);
@@ -443,6 +458,10 @@ $().ready(() => {
 
     star.uniqueItem = 'Ancient Artifact';
 
-    star.markHasArtifact();
+    star.markHasArtifact(new Enemy('super boss'));
+  }
+
+  function disableTravel() {
+    $('.star-system').off();
   }
 });
