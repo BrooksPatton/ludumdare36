@@ -16,8 +16,6 @@ $().ready(() => {
 
   enableTravelToStars();
 
-  console.log(stars);
-
   $('#purchaseFuel').on('click', function() {
     if(player.money >= player.star.fuelCost && player.currentFuel < player.maxFuel) {
       player.money -= player.star.fuelCost;
@@ -165,6 +163,9 @@ $().ready(() => {
   }
 
   function travelTo(star) {
+    if(player.currentFuel === 0) {
+      popupMessage('Game over', `Unfortunately you have run out of fuel.`);
+    }
     currentDestination = star;
 
     player.currentFuel--;
@@ -303,13 +304,19 @@ $().ready(() => {
     $popup.append($title);
     $popup.append($message);
 
-    $popup.avgrund({
+    let options = {
       width: 200,
       height: 150,
       template: $popup,
       showClose: true,
       showCloseText: 'close'
-    });
+    };
+
+    if(title === 'Game over') {
+      options.onUnload = () => window.location.href = '/gameover';
+    }
+
+    $popup.avgrund(options);
 
     $popup.click();
   }
