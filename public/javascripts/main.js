@@ -39,9 +39,9 @@ $().ready(() => {
   });
 
   $('#searchPlanet').on('click', function() {
-    rechargePlayerShields(1);
-
     if(player.star.treasure) {
+      rechargePlayerShields(1);
+
       player.treasures.push(player.star.treasure);
 
       if(player.star.treasure === 'fuel tank') player.maxFuel += player.star.treasureAmount;
@@ -54,7 +54,10 @@ $().ready(() => {
 
       updateInfoPanel();
     }
-  })
+    else {
+      popupMessage('Searching planet', 'Nothing to find here');
+    }
+  });
 
   function createStars(numOfStars) {
     let randomizedStarNames = _.shuffle(starnames);
@@ -163,13 +166,17 @@ $().ready(() => {
 
       if(currentEnemy.shields > 0) {
         currentEnemy.shields -= player.laserDamage;
+
+        actionMessage(`You attacked the ${currentEnemy.name} with your laser for ${player.laserDamage} shield damage`, 'player');
       }
       else {
         currentEnemy.hull -= player.laserDamage;
+        actionMessage(`You attacked the ${currentEnemy.name} with your laser for ${player.laserDamage} hull damage`, 'player');
       }
 
       if(currentEnemy.hull <= 0) {
         player.star.normalEnemy = null;
+        popupMessage(`${currentEnemy.name} fight`, `You destroyed the ${currentEnemy.name} with your laser!`);
         travelTo(currentDestination);
       }
       else {
@@ -187,13 +194,16 @@ $().ready(() => {
 
         if(currentEnemy.shields > 0) {
           currentEnemy.shields -= player.missileDamage;
+          actionMessage(`You attacked the ${currentEnemy.name} with your missile for ${player.missileDamage} shield damage`, 'player');
         }
         else {
           currentEnemy.hull -= player.missileDamage;
+          actionMessage(`You attacked the ${currentEnemy.name} with your missile for ${player.missileDamage} hull damage`, 'player');
         }
 
         if(currentEnemy.hull <= 0) {
           player.star.normalEnemy = null;
+          popupMessage(`${currentEnemy.name} fight`, `You destroyed the ${currentEnemy.name} with your missile!`);
           travelTo(currentDestination);
         }
         else {
@@ -209,19 +219,23 @@ $().ready(() => {
     if(currentEnemy.missiles > 0 && randomInt(0, 100) > 20) {
       if(player.currentShields > 0) {
         player.currentShields -= currentEnemy.missileDamage;
+        actionMessage(`The ${currentEnemy.name} attacked you with their missile for ${currentEnemy.missileDamage} shield damage`, 'enemy-color');
         if(player.currentShields < 0) player.currentShields = 0;
       }
       else {
         player.currentHull -= currentEnemy.missileDamage;
+        actionMessage(`The ${currentEnemy.name} attacked you with their missile for ${currentEnemy.missileDamage} hull damage`, 'enemy-color');
       }
     }
     else {
       if(player.currentShields > 0) {
         player.currentShields -= currentEnemy.laserDamage;
+        actionMessage(`The ${currentEnemy.name} attacked you with their laser for ${currentEnemy.missileDamage} shield damage`, 'enemy-color');
         if(player.currentShields < 0) player.currentShields = 0;
       }
       else {
         player.currentHull -= currentEnemy.laserDamage;
+        actionMessage(`The ${currentEnemy.name} attacked you with their laser for ${currentEnemy.missileDamage} hull damage`, 'enemy-color');
       }
     }
 
@@ -239,5 +253,35 @@ $().ready(() => {
     if(player.currentShields > player.maxShields) player.currentShields = player.maxShields;
 
     updateInfoPanel();
+  }
+
+  function popupMessage(title, message) {
+    let $popup = $('<div>');
+    let $title = $('<h3>');
+    let $message = $('<p>');
+    $title.text(title);
+    $message.text(message);
+
+    $popup.append($title);
+    $popup.append($message);
+
+    $popup.avgrund({
+      width: 200,
+      height: 125,
+      template: $popup
+    });
+
+    $popup.click();
+  }
+
+  function actionMessage(message, who) {
+    let $el = $('<h4>');
+    $el.addClass(who);
+    $el.hide();
+
+    $el.text(message);
+
+    $('.action-messages').append($el);
+    $el.fadeIn(50, () => $el.fadeOut(5000, () => $el.remove()));
   }
 });

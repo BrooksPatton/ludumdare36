@@ -43,7 +43,7 @@ main {
     background-color: blue;
     display: inline-block; }
     .game-area .commands .btn {
-      background-color: lightgray;
+      background-color: gray;
       margin: 5px 10px;
       text-align: center;
       padding: 10px 5px;
@@ -67,6 +67,12 @@ main {
       background-repeat: no-repeat;
       background-size: contain;
       margin: auto; }
+    .game-area .action .action-messages {
+      text-align: center; }
+    .game-area .action .player {
+      color: blue; }
+    .game-area .action .enemy-color {
+      color: red; }
   .game-area .info {
     height: 100%;
     width: 30%;
