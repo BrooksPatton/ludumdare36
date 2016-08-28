@@ -19,6 +19,8 @@ main {
     position: absolute;
     border-radius: 50%;
     color: white; }
+    .star-map .star-system .has-artifact-color {
+      color: red; }
     .star-map .star-system .star-name {
       margin-top: 10px; }
   .star-map .player {

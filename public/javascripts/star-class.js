@@ -68,4 +68,8 @@ class Star {
       this.$name.addClass('explored');
     }
   }
+
+  markHasArtifact() {
+    this.$name.addClass('has-artifact-color');
+  }
 }

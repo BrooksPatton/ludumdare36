@@ -78,10 +78,17 @@ $().ready(() => {
       updateInfoPanel();
     }
     else if(player.star.uniqueItem) {
+      if(player.star.uniqueItem === 'Ancient Artifact') {
+        player.treasures.push(player.star.uniqueItem);
+
+        popupMessage('Ancient artifact', 'You found the ancient artifact! You win the game!!!');
+      }
       player.treasureMaps.push(player.star.uniqueItem)
       popupMessage('Unique item found', 'You found a fragment of a treasure map! Gather them all to find the ancient artifact');
 
       player.star.markExplored('uniqueItem');
+
+      if(player.treasureMaps.length === 4) revealStarWithArtifact();
 
       updateInfoPanel();
     }
@@ -125,13 +132,16 @@ $().ready(() => {
     let mapFragments = $('#map-fragments');
 
     if(player.treasureMaps.length === 1 && mapFragments.length === 0) {
-      let $row = $('<tr><td class="label">Map fragments</td><td><span id="map-fragments">1</span>/??</td></tr>');
+      let $row = $('<tr><td class="label">Map fragments</td><td><span id="map-fragments">1</span>/<span id="total-map-fragments">??</span></td></tr>');
 
       $('.info table').append($row);
     }
     else if(mapFragments.length < player.treasureMaps.length) {
       $('#map-fragments').text(player.treasureMaps.length);
+
+      if(player.treasureMaps.length === 4) $('#total-map-fragments').text(4);
     }
+
   }
 
   function updateActionPanel() {
@@ -347,6 +357,10 @@ $().ready(() => {
       options.onUnload = () => window.location.href = '/gameover';
     }
 
+    if(title === 'Ancient Artifact') {
+      options.onUnload = () => window.location.href = '/gameover';
+    }
+
     $popup.avgrund(options);
 
     $popup.click();
@@ -421,5 +435,13 @@ $().ready(() => {
 
 
     updateInfoPanel();
+  }
+
+  function revealStarWithArtifact() {
+    let star = stars[randomInt(0, stars.length - 1)];
+
+    star.uniqueItem = 'Ancient Artifact';
+
+    star.markHasArtifact();
   }
 });
