@@ -333,9 +333,9 @@ $().ready(() => {
       }
     }
     else {
-      if(player.currentShields > 0) {
-        let currentDamage = currentEnemy.laserDamage();
+      let currentDamage = currentEnemy.laserDamage();
 
+      if(player.currentShields > 0) {
         player.currentShields -= currentDamage;
         actionMessage(`The ${currentEnemy.name} attacked you with their laser for ${currentDamage} shield damage`, 'enemy-color');
         if(player.currentShields < 0) player.currentShields = 0;
@@ -403,7 +403,7 @@ $().ready(() => {
     $el.text(message);
 
     $('.action-messages').prepend($el);
-    $el.fadeIn(500, () => $el.fadeOut(3000, () => $el.remove()));
+    $el.fadeIn(1000, () => $el.fadeOut(5000, () => $el.remove()));
   }
 
   function enableTravelToStars() {
