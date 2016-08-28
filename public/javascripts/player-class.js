@@ -38,7 +38,7 @@ class Player {
     this.star = star;
     let starMap = $('.star-map');
 
-    this.$ship.css({
+    this.$ship.animate({
       left: star.position.left - 7,
       top: star.position.top - 10
     });
