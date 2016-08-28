@@ -6,6 +6,14 @@ body
 
 .btn
   cursor: pointer
+  background-color: gray
+  margin: 5px 10px
+  text-align: center
+  padding: 10px 5px
+  border-radius: 5%
+
+  a
+    text-decoration: none
 
 .hidden
   display: none
@@ -63,13 +71,6 @@ main
     background-image: url(/images/metal-background.png)
     background-repeat: no-repeat
     background-size: contain
-
-    .btn
-      background-color: gray
-      margin: 5px 10px
-      text-align: center
-      padding: 10px 5px
-      border-radius: 5%
 
   .action
     height: 100%
@@ -161,3 +162,22 @@ main
 
     p
       line-height: 1.3em
+
+.gameover
+  background-color: #CFD2D8
+  height: 100%
+  overflow: scroll
+
+  h1, h2, p
+    text-align: center
+
+  .player-report
+    margin-top: 5em
+
+    p, ul
+      text-align: left
+      margin-left: 1px / 3px * 100%
+
+  .btn
+    width: 5em
+    margin: auto

@@ -1,6 +1,34 @@
 extends layout
 
 block main
-  h1 You won! or lost
-  
-  a(href='/game') start over
+  section.gameover
+    h1= gameStatus
+    .what-happened
+      if currentFuel <= 0
+        p You are stranded for all eternity as your starship floats through space without fuel
+      else if currentHull <= 0
+        p Your ship floats off in a dozen directions, needless to say you are dead
+      else
+        p You have the treasure! You can now retire to your own private moon
+      endif
+      
+    .btn
+      a(href='/game') play again
+
+    .player-report
+      h2 At the end of the game, you're ship had
+      p #{currentFuel} out of #{maxFuel} Fuel
+      p #{currentShields} out of #{maxShields} Shields
+      p #{currentMissiles} out of #{maxMissiles} Missiles
+      p #{currentHull} out of #{maxHull} Hull
+      p #{money} Money
+      p Your lasers did up to #{laserMaxDamage} damage
+      p Your missiles did up to #{missileMaxDamage} damage
+      p You had the following treasure maps
+        ul
+          for map in treasureMaps
+            li= map
+      p You had the following items
+        ul
+          for item in treasures
+            li= item

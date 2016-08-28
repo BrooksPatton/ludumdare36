@@ -239,15 +239,16 @@ $().ready(() => {
 
     $('#fire-lasers').on('click', function() {
       disableAttackButtons();
+      let currentDamage = player.laserDamage();
 
       if(currentEnemy.shields > 0) {
-        currentEnemy.shields -= player.laserDamage;
+        currentEnemy.shields -= currentDamage;
 
-        actionMessage(`You attacked the ${currentEnemy.name} with your laser for ${player.laserDamage} shield damage`, 'player');
+        actionMessage(`You attacked the ${currentEnemy.name} with your laser for ${currentDamage} shield damage`, 'player');
       }
       else {
-        currentEnemy.hull -= player.laserDamage;
-        actionMessage(`You attacked the ${currentEnemy.name} with your laser for ${player.laserDamage} hull damage`, 'player');
+        currentEnemy.hull -= currentDamage;
+        actionMessage(`You attacked the ${currentEnemy.name} with your laser for ${currentDamage} hull damage`, 'player');
       }
 
       if(currentEnemy.hull <= 0) {
@@ -275,16 +276,17 @@ $().ready(() => {
     if(player.currentMissiles > 0){
       $('#fire-missile').on('click', function() {
         disableAttackButtons();
+        let currentDamage = player.missileDamage();
 
         player.currentMissiles--;
 
         if(currentEnemy.shields > 0) {
-          currentEnemy.shields -= player.missileDamage;
-          actionMessage(`You attacked the ${currentEnemy.name} with your missile for ${player.missileDamage} shield damage`, 'player');
+          currentEnemy.shields -= currentDamage;
+          actionMessage(`You attacked the ${currentEnemy.name} with your missile for ${currentDamage} shield damage`, 'player');
         }
         else {
-          currentEnemy.hull -= player.missileDamage;
-          actionMessage(`You attacked the ${currentEnemy.name} with your missile for ${player.missileDamage} hull damage`, 'player');
+          currentEnemy.hull -= currentDamage;
+          actionMessage(`You attacked the ${currentEnemy.name} with your missile for ${currentDamage} hull damage`, 'player');
         }
 
         if(currentEnemy.hull <= 0) {
@@ -370,11 +372,13 @@ $().ready(() => {
     };
 
     if(title === 'Game over') {
-      options.onUnload = () => window.location.href = '/gameover';
+      let playerData = JSON.stringify(player);
+      options.onUnload = () => window.location.href = `/gameover?status=loss&playerData=${playerData}`;
     }
 
     if(title === 'Ancient artifact') {
-      options.onUnload = () => window.location.href = '/gameover';
+      let playerData = JSON.stringify(player);
+      options.onUnload = () => window.location.href = `/gameover?status=win&playerData=${playerData}`;
     }
 
     $popup.avgrund(options);

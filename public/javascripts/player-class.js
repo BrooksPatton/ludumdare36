@@ -16,8 +16,13 @@ class Player {
 
     this.money = startingMoney;
 
-    this.laserDamage = 1;
-    this.missileDamage = 5;
+    this.laserMinDamage = 0;
+    this.laserMaxDamage = 5;
+    this.missileMinDamage = 5;
+    this.missileMaxDamage = 10;
+
+    this.laserDamage = () => randomInt(this.laserMinDamage, this.laserMaxDamage);
+    this.missileDamage = () => randomInt(this.missileMinDamage, this.missileMaxDamage);;
 
     this.treasures = [];
 

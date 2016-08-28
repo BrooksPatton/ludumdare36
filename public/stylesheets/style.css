@@ -5,7 +5,14 @@ body {
   background-size: 10px; }
 
 .btn {
-  cursor: pointer; }
+  cursor: pointer;
+  background-color: gray;
+  margin: 5px 10px;
+  text-align: center;
+  padding: 10px 5px;
+  border-radius: 5%; }
+  .btn a {
+    text-decoration: none; }
 
 .hidden {
   display: none; }
@@ -56,12 +63,6 @@ main {
     background-image: url(/images/metal-background.png);
     background-repeat: no-repeat;
     background-size: contain; }
-    .game-area .commands .btn {
-      background-color: gray;
-      margin: 5px 10px;
-      text-align: center;
-      padding: 10px 5px;
-      border-radius: 5%; }
   .game-area .action {
     height: 100%;
     width: 40%;
@@ -136,5 +137,20 @@ main {
     font-size: 1.3em; }
     .index .tutorial p {
       line-height: 1.3em; }
+
+.gameover {
+  background-color: #CFD2D8;
+  height: 100%;
+  overflow: scroll; }
+  .gameover h1, .gameover h2, .gameover p {
+    text-align: center; }
+  .gameover .player-report {
+    margin-top: 5em; }
+    .gameover .player-report p, .gameover .player-report ul {
+      text-align: left;
+      margin-left: 33.33333%; }
+  .gameover .btn {
+    width: 5em;
+    margin: auto; }
 
 /*# sourceMappingURL=style.css.map */
