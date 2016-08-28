@@ -279,7 +279,7 @@ $().ready(() => {
     }
 
     if(player.currentHull <= 0) {
-      window.location.href = '/gameover';
+      popupMessage('Game over', 'Your ship has exploded');
     }
 
     updateInfoPanel();
