@@ -81,8 +81,9 @@ $().ready(() => {
       if(player.star.uniqueItem === 'Ancient Artifact') {
         player.treasures.push(player.star.uniqueItem);
 
-        popupMessage('Ancient artifact', 'You found the ancient artifact! You win the game!!!');
+        return popupMessage('Ancient artifact', 'You found the ancient artifact! You win the game!!!');
       }
+
       player.treasureMaps.push(player.star.uniqueItem)
       popupMessage('Unique item found', 'You found a fragment of a treasure map! Gather them all to find the ancient artifact');
 
@@ -347,7 +348,7 @@ $().ready(() => {
 
     let options = {
       width: 200,
-      height: 150,
+      height: 175,
       template: $popup,
       showClose: true,
       showCloseText: 'close'
@@ -357,7 +358,7 @@ $().ready(() => {
       options.onUnload = () => window.location.href = '/gameover';
     }
 
-    if(title === 'Ancient Artifact') {
+    if(title === 'Ancient artifact') {
       options.onUnload = () => window.location.href = '/gameover';
     }
 
