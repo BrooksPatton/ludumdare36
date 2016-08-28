@@ -188,7 +188,7 @@ $().ready(() => {
 
   function enableAttackButtons() {
     disableAttackButtons();
-    
+
     $('#fire-lasers').on('click', function() {
       disableAttackButtons();
 
@@ -204,7 +204,8 @@ $().ready(() => {
 
       if(currentEnemy.hull <= 0) {
         player.star.normalEnemy = null;
-        popupMessage(`${currentEnemy.name} fight`, `You destroyed the ${currentEnemy.name} with your laser!`);
+        actionMessage(`You destroyed the ${currentEnemy.name} with your laser!`);
+        getRewardforDestroying();
         travelTo(currentDestination);
       }
       else {
@@ -231,7 +232,8 @@ $().ready(() => {
 
         if(currentEnemy.hull <= 0) {
           player.star.normalEnemy = null;
-          popupMessage(`${currentEnemy.name} fight`, `You destroyed the ${currentEnemy.name} with your missile!`);
+          actionMessage(`You destroyed the ${currentEnemy.name} with your missile!`);
+          getRewardforDestroying();
           travelTo(currentDestination);
         }
         else {
@@ -288,14 +290,14 @@ $().ready(() => {
     let $title = $('<h3>');
     let $message = $('<p>');
     $title.text(title);
-    $message.text(message);
+    $message.html(message);
 
     $popup.append($title);
     $popup.append($message);
 
     $popup.avgrund({
       width: 200,
-      height: 125,
+      height: 150,
       template: $popup,
       showClose: true,
       showCloseText: 'close'
@@ -321,5 +323,55 @@ $().ready(() => {
         travelTo(stars[$(this).data('id')]);
       });
     });
+  }
+
+  function getRewardforDestroying() {
+    let rewards = [
+      'fuel',
+      'missiles',
+      'money',
+      'item'
+    ]
+
+    let rewardType = rewards[randomInt(0, rewards.length - 1)];
+
+    if(rewardType === 'item') {
+      popupMessage(`${currentEnemy.name} destroyed`, `Searching through the rubble you discover a working item. You hastily bring the ${currentEnemy.item} to your ship.`);
+      actionMessage(`${currentEnemy.item} increased by ${currentEnemy.itemAmount}`);
+
+      if(currentEnemy.item === 'fuel tank') {
+        player.maxFuel += currentEnemy.itemAmount;
+      }
+      if(currentEnemy.item === 'shield booster') {
+        player.maxShields += currentEnemy.itemAmount;
+      }
+      if(currentEnemy.item === 'missile rack') {
+        player.maxMissiles += currentEnemy.itemAmount;
+      }
+      if(currentEnemy.item === 'hull reinforcer') {
+        player.maxHull += currentEnemy.itemAmount;
+      }
+      if(currentEnemy.item === 'money') {
+        player.money += currentEnemy.itemAmount;
+      }
+    }
+    else {
+      popupMessage(`${currentEnemy.name} destroyed`, `Searching through the rubble you find ${currentEnemy[rewardType]} ${rewardType}`);
+
+      if(rewardType === 'fuel') {
+        player.currentFuel += currentEnemy[rewardType];
+        if(player.currentFuel > player.maxFuel) player.currentFuel = player.maxFuel;
+      }
+      if(rewardType === 'missiles') {
+        player.currentMissiles += currentEnemy[rewardType];
+        if(player.currentMissiles > player.maxMissiles) player.currentMissiles = player.maxMissiles;
+      }
+      if(rewardType === 'money') {
+        player.money += currentEnemy[rewardType];
+      }
+    }
+
+
+    updateInfoPanel();
   }
 });

@@ -12,6 +12,10 @@ class Enemy {
       this.missileDamage = 5;
 
       this.imageUrl = '/images/normal-pirate.png';
+
+      let itemIndex = randomInt(0, normalItems.length - 1);
+      this.item = normalItems[itemIndex].item;
+      this.itemAmount = randomInt(normalItems[itemIndex].minAmount, normalItems[itemIndex].maxAmount);
     }
   }
 }
