@@ -55,23 +55,28 @@ $().ready(() => {
       if(player.star.treasure === 'fuel tank') {
         player.maxFuel += player.star.treasureAmount;
         actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Fuel tanks increased by ${player.star.treasureAmount}`, 'player');
+        animateShipUpgrade('fuel');
       }
       if(player.star.treasure === 'shield booster') {
         player.maxShields += player.star.treasureAmount;
         actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Shield capacity increased by ${player.star.treasureAmount}`, 'player');
+        animateShipUpgrade('shields');
       }
       if(player.star.treasure === 'missile rack') {
         player.maxMissiles += player.star.treasureAmount;
         player.missileMaxDamage += player.star.treasureAmount;
         actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Maximum number of missiles and damage increased by ${player.star.treasureAmount}`, 'player');
+        animateShipUpgrade('missiles');
       }
       if(player.star.treasure === 'hull reinforcer') {
         player.maxHull += player.star.treasureAmount;
         actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Hull strength increased by ${player.star.treasureAmount}`, 'player');
+        animateShipUpgrade('hull');
       }
       if(player.star.treasure === 'money') {
         player.money += player.star.treasureAmount;
         actionMessage(`You found some ${player.star.treasure} in the ruins of the planet! Bank account increased by ${player.star.treasureAmount}`, 'player');
+        animateShipUpgrade('money');
       }
       if(player.star.treasure === 'laser battery pack') {
         player.laserMaxDamage += player.star.treasureAmount;
@@ -468,23 +473,27 @@ $().ready(() => {
 
       if(currentEnemy.item === 'fuel tank') {
         player.maxFuel += currentEnemy.itemAmount;
+        animateShipUpgrade('fuel');
       }
       if(currentEnemy.item === 'shield booster') {
         player.maxShields += currentEnemy.itemAmount;
+        animateShipUpgrade('shields');
       }
       if(currentEnemy.item === 'missile rack') {
         player.maxMissiles += currentEnemy.itemAmount;
+        animateShipUpgrade('missiles');
         player.missileMaxDamage += currentEnemy.itemAmount;
       }
       if(currentEnemy.item === 'hull reinforcer') {
         player.maxHull += currentEnemy.itemAmount;
+        animateShipUpgrade('hull');
       }
       if(currentEnemy.item === 'laser battery pack') {
-        player.maxHull += currentEnemy.itemAmount;
         player.laserMaxDamage += currentEnemy.itemAmount;
       }
       if(currentEnemy.item === 'money') {
         player.money += currentEnemy.itemAmount;
+        animateShipUpgrade('money');
       }
     }
     else {
@@ -529,5 +538,23 @@ $().ready(() => {
 
   function setColorToBad(id) {
     $(id).addClass('danger').removeClass('warning');
+  }
+
+  function animateShipUpgrade(upgrade) {
+    if(upgrade === 'fuel') {
+      $('#maxFuel').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#maxFuel').removeClass('upgraded'));
+    }
+    else if(upgrade === 'shields') {
+      $('#maxShields').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#maxShields').removeClass('upgraded'));
+    }
+    else if(upgrade === 'missiles') {
+      $('#maxMissiles').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#maxMissiles').removeClass('upgraded'));
+    }
+    else if(upgrade === 'hull') {
+      $('#maxHull').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#maxHull').removeClass('upgraded'));
+    }
+    else if(upgrade === 'money') {
+      $('#money').addClass('upgraded').animate({color: '#fff'}, 30000, () => $('#money').removeClass('upgraded'));
+    }
   }
 });
