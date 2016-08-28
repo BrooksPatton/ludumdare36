@@ -4,35 +4,11 @@ body
   background-image: url(/images/background.png)
   background-size: 10px
 
-  .index
-    margin-bottom: 10em
-    
-    h1
-      color: #C69A66
+.btn
+  cursor: pointer
 
-    p
-      color: #F2F3F6
-      margin-left: 25px
-
-    .btn
-      height: 25px
-      width: 100px
-      background-color: #F2F3F6
-      margin: auto
-      text-align: center
-
-    a
-      text-decoration: none
-      line-height: 25px
-
-    .tutorial
-      width: 25em
-      margin: auto
-      margin-top: 3em
-      font-size: 1.3em
-
-      p
-        line-height: 1.3em
+.hidden
+  display: none
 
 main
   height: 600px
@@ -81,8 +57,11 @@ main
   .commands
     height: 100%
     width: 3px / 10px * 100%
-    background-color: blue
     display: inline-block
+    background-color: #504F4F
+    background-image: url(/images/metal-background.png)
+    background-repeat: no-repeat
+    background-size: contain
 
     .btn
       background-color: gray
@@ -94,7 +73,7 @@ main
   .action
     height: 100%
     width: 4px / 10px * 100%
-    background-color: green
+    background-color: #47d4df
     display: inline-block
     position: absolute
     height: 2px / 3px * 100%
@@ -134,15 +113,49 @@ main
   .info
     height: 100%
     width: 3px / 10px * 100%
-    background-color: yellow
     display: inline-block
     position: absolute
     height: 2px / 3px * 100%
     left: 7px / 10px * 100%
+    background-color: #504F4F
+    background-image: url(/images/metal-background.png)
+    background-repeat: no-repeat
+    background-size: contain
 
     table
+      color: #808080
       margin: auto
       font-size: 1.3em
 
       .label
         width: 150px
+
+.index
+  margin-bottom: 10em
+
+  h1
+    color: #C69A66
+
+  p
+    color: #F2F3F6
+    margin-left: 25px
+
+  .btn
+    height: 25px
+    width: 100px
+    background-color: #F2F3F6
+    margin: auto
+    text-align: center
+
+  a
+    text-decoration: none
+    line-height: 25px
+
+  .tutorial
+    width: 25em
+    margin: auto
+    margin-top: 3em
+    font-size: 1.3em
+
+    p
+      line-height: 1.3em
