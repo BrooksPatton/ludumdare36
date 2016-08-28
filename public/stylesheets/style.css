@@ -3,21 +3,29 @@ body {
   background-color: black;
   background-image: url(/images/background.png);
   background-size: 10px; }
-  body .index h1 {
-    color: #C69A66; }
-  body .index p {
-    color: #F2F3F6;
-    margin-left: 25px; }
-  body .index .btn {
-    height: 25px;
-    width: 100px;
-    background-color: #F2F3F6;
-    margin: auto;
-    text-align: center;
-    margin-top: 17%; }
-  body .index a {
-    text-decoration: none;
-    line-height: 25px; }
+  body .index {
+    margin-bottom: 10em; }
+    body .index h1 {
+      color: #C69A66; }
+    body .index p {
+      color: #F2F3F6;
+      margin-left: 25px; }
+    body .index .btn {
+      height: 25px;
+      width: 100px;
+      background-color: #F2F3F6;
+      margin: auto;
+      text-align: center; }
+    body .index a {
+      text-decoration: none;
+      line-height: 25px; }
+    body .index .tutorial {
+      width: 25em;
+      margin: auto;
+      margin-top: 3em;
+      font-size: 1.3em; }
+      body .index .tutorial p {
+        line-height: 1.3em; }
 
 main {
   height: 600px;
