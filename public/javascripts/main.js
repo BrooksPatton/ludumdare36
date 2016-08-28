@@ -18,6 +18,8 @@ $().ready(() => {
     if(player.money >= player.star.fuelCost && player.currentFuel < player.maxFuel) {
       player.money -= player.star.fuelCost;
       player.currentFuel++;
+
+      actionMessage(`1 fuel purchased for ${player.star.fuelCost}`, player);
       updateInfoPanel();
     }
   });
@@ -26,6 +28,8 @@ $().ready(() => {
     if(player.money >= player.star.missilesCost && player.currentMissiles < player.maxMissiles) {
       player.money -= player.star.missilesCost;
       player.currentMissiles++;
+
+      actionMessage(`1 missile purchased for ${player.star.missilesCost}`, player);
       updateInfoPanel();
     }
   });
@@ -34,6 +38,8 @@ $().ready(() => {
     if(player.money >= player.star.repairCost && player.currentHull < player.maxHull) {
       player.money -= player.star.repairCost;
       player.currentHull++;
+
+      actionMessage(`Ships hull repaired for ${player.star.missilesCost}`, player);
       updateInfoPanel();
     }
   });
@@ -44,11 +50,26 @@ $().ready(() => {
 
       player.treasures.push(player.star.treasure);
 
-      if(player.star.treasure === 'fuel tank') player.maxFuel += player.star.treasureAmount;
-      if(player.star.treasure === 'shield booster') player.maxShields += player.star.treasureAmount;
-      if(player.star.treasure === 'missile rack') player.maxMissiles += player.star.treasureAmount;
-      if(player.star.treasure === 'hull reinforcer') player.maxHull += player.star.treasureAmount;
-      if(player.star.treasure === 'money') player.money += player.star.treasureAmount;
+      if(player.star.treasure === 'fuel tank') {
+        player.maxFuel += player.star.treasureAmount;
+        actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Fuel tanks increased by ${player.star.treasureAmount}`, 'player');
+      }
+      if(player.star.treasure === 'shield booster') {
+        player.maxShields += player.star.treasureAmount;
+        actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Shield capacity increased by ${player.star.treasureAmount}`, 'player');
+      }
+      if(player.star.treasure === 'missile rack') {
+        player.maxMissiles += player.star.treasureAmount;
+        actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Maximum number of missiles increased by ${player.star.treasureAmount}`, 'player');
+      }
+      if(player.star.treasure === 'hull reinforcer') {
+        player.maxHull += player.star.treasureAmount;
+        actionMessage(`You found a ${player.star.treasure} in the ruins of the planet! Hull strength increased by ${player.star.treasureAmount}`, 'player');
+      }
+      if(player.star.treasure === 'money') {
+        player.money += player.star.treasureAmount;
+        actionMessage(`You found some ${player.star.treasure} in the ruins of the planet! Bank account increased by ${player.star.treasureAmount}`, 'player');
+      }
 
       player.star.markExplored('treasure');
 
